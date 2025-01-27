@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { forkJoin } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [CommonModule, ScrollingModule, MatCardModule],
+  imports: [CommonModule, ScrollingModule, MatCardModule, RouterModule],
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss'],
 })
@@ -39,7 +40,7 @@ export class PokemonListComponent implements OnInit {
 
     this.pokemonService.getPokemonList(this.offset).subscribe((pokemonList) => {
       const detailRequests = pokemonList.map((pokemon) =>
-        this.pokemonService.getPokemonDetails(
+        this.pokemonService.getPokemonDetail(
           `https://pokeapi.co/api/v2/pokemon/${pokemon.id}`
         )
       );

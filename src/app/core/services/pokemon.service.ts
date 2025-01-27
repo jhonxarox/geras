@@ -28,7 +28,7 @@ export class PokemonService {
       );
   }
 
-  getPokemonDetails(url: string): Observable<PokemonDetail> {
+  getPokemonDetail(url: string): Observable<PokemonDetail> {
     return this.http.get<PokemonDetail>(url);
   }
 }
