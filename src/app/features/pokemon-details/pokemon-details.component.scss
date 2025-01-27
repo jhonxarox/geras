@@ -98,3 +98,12 @@ td:first-child {
   margin-top: 1rem;
   font-weight: bold;
 }
+
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable:hover {
+  transform: scale(1.05); /* Subtle zoom on hover */
+}
