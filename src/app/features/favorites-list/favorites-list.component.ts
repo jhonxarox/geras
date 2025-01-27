@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../core/services/favorites.service';
 import { PokemonService } from '../../core/services/pokemon.service';
 import { PokemonCardComponent } from '../../shared/pokemon-card/pokemon-card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-favorites-list',
-  imports: [PokemonCardComponent],
+  imports: [CommonModule, PokemonCardComponent],
   templateUrl: './favorites-list.component.html',
   styleUrl: './favorites-list.component.scss'
 })
