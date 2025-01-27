@@ -1,0 +1,18 @@
+<div *ngIf="isLoading" class="loading-spinner">
+  <p>Loading favorites...</p>
+</div>
+
+<div class="pokemon-list-container">
+  <div class="pokemon-grid">
+    <app-pokemon-card
+      *ngFor="let pokemon of favoritePokemons"
+      [pokemon]="pokemon"
+      [isFavorite]="true"
+      (toggleFavorite)="toggleFavorite($event)"
+    ></app-pokemon-card>
+  </div>
+
+  <div *ngIf="favoritePokemons.length === 0" class="no-favorites">
+    <p>No favorites yet!</p>
+  </div>
+</div>

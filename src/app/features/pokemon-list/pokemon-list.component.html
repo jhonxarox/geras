@@ -1,25 +1,11 @@
 <div class="pokemon-list-container">
   <div class="pokemon-grid">
-    <div 
-    *ngFor="let pokemon of pokemonList" 
-    class="pokemon-card" 
-    [routerLink]="'/pokemon/' + pokemon.id"
-    >
-      <mat-card>
-        <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
-        <mat-card-content>
-          <h3>{{ pokemon.name | titlecase }}</h3>
-          <div class="types">
-            <span
-              *ngFor="let type of pokemon.types"
-              class="type-badge {{ type.type.name.toLowerCase() }}"
-            >
-              {{ type.type.name | titlecase }}
-            </span>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
+    <app-pokemon-card
+      *ngFor="let pokemon of pokemonList"
+      [pokemon]="pokemon"
+      [isFavorite]="isFavorite(pokemon.id)"
+      (toggleFavorite)="toggleFavorite($event)"
+    ></app-pokemon-card>
   </div>
 
   <div *ngIf="isLoading" class="loading-spinner">

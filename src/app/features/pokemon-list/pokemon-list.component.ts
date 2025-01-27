@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../core/services/pokemon.service';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { forkJoin } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { FavoritesService } from '../../core/services/favorites.service';
+import { PokemonCardComponent } from '../../shared/pokemon-card/pokemon-card.component';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [CommonModule, ScrollingModule, MatCardModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    PokemonCardComponent,
+  ],
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss'],
 })
@@ -18,7 +22,10 @@ export class PokemonListComponent implements OnInit {
   isLoading = false;
   offset = 0;
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private favoritesService: FavoritesService
+  ) {}
 
   ngOnInit(): void {
     this.loadPokemons();
@@ -27,10 +34,18 @@ export class PokemonListComponent implements OnInit {
 
   onScroll(): void {
     const scrollPosition = window.innerHeight + window.scrollY;
-    const bottomPosition = document.body.offsetHeight - 200; // Trigger when 200px from bottom
+    const bottomPosition = document.body.offsetHeight; 
     if (scrollPosition >= bottomPosition && !this.isLoading) {
       this.loadPokemons();
     }
+  }
+
+  toggleFavorite(pokemonId: number): void {
+    this.favoritesService.toggleFavorite(pokemonId);
+  }
+
+  isFavorite(pokemonId: number): boolean {
+    return this.favoritesService.isFavorite(pokemonId);
   }
 
   loadPokemons(): void {
@@ -47,7 +62,7 @@ export class PokemonListComponent implements OnInit {
 
       forkJoin(detailRequests).subscribe((detailedPokemonList) => {
         this.pokemonList = [...this.pokemonList, ...detailedPokemonList];
-        this.offset += 30; 
+        this.offset += 30;
         this.isLoading = false;
       });
     });

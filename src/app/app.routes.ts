@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { PokemonListComponent } from './features/pokemon-list/pokemon-list.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'pokemon-list', pathMatch: 'full' },
@@ -15,6 +14,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/pokemon-details/pokemon-details.component').then(
         (m) => m.PokemonDetailsComponent
+      ),
+  },
+  {
+    path: 'favorites',
+    loadComponent: () =>
+      import('./features/favorites-list/favorites-list.component').then(
+        (m) => m.FavoritesListComponent
       ),
   },
 ];
