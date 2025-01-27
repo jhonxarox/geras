@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'geras';
+  debugMode = environment.debug; 
 
   pokemonTypes: string[] = [
     'fire',
@@ -34,7 +36,11 @@ export class AppComponent {
 
   selectedType: string = 'all';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    if (this.debugMode) {
+      console.log('Debug mode is enabled');
+    }
+  }
 
   onTypeFilterChange(event: Event): void {
     this.selectedType = (event.target as HTMLSelectElement).value;

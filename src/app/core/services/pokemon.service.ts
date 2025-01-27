@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PokemonApiResponse, PokemonDetail } from '../models/pokemon.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  private apiUrl = 'https://pokeapi.co/api/v2/pokemon';
+  private baseUrl = environment.apiUrl;
+  private apiUrl = `${this.baseUrl}/pokemon`;
 
   constructor(private http: HttpClient) {}
 

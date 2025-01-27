@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageViewerComponent } from '../../shared/image-viewer/image-viewer.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -14,6 +15,8 @@ import { ImageViewerComponent } from '../../shared/image-viewer/image-viewer.com
   styleUrl: './pokemon-details.component.scss',
 })
 export class PokemonDetailsComponent implements OnInit {
+  private baseUrl = environment.apiUrl;
+  private apiUrl = `${this.baseUrl}/pokemon`;
   pokemon!: PokemonDetail;
   isLoading = true;
 
@@ -27,7 +30,7 @@ export class PokemonDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.pokemonService
-        .getPokemonDetail(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        .getPokemonDetail(`${this.apiUrl}/${id}`)
         .subscribe(
           (data) => {
             this.pokemon = data;

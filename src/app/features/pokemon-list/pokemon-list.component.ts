@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FavoritesService } from '../../core/services/favorites.service';
 import { PokemonCardComponent } from '../../shared/pokemon-card/pokemon-card.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,6 +19,8 @@ import { PokemonCardComponent } from '../../shared/pokemon-card/pokemon-card.com
   styleUrls: ['./pokemon-list.component.scss'],
 })
 export class PokemonListComponent implements OnInit {
+  private baseUrl = environment.apiUrl;
+  private apiUrl = `${this.baseUrl}/pokemon`;
   pokemonList: any[] = [];
   filteredPokemonList: any[] = [];
   isLoading = false;
@@ -64,7 +67,7 @@ export class PokemonListComponent implements OnInit {
     this.pokemonService.getPokemonList(this.offset).subscribe((pokemonList) => {
       const detailRequests = pokemonList.map((pokemon) =>
         this.pokemonService.getPokemonDetail(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.id}`
+          `${this.apiUrl}/${pokemon.id}`
         )
       );
 
