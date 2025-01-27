@@ -45,6 +45,6 @@ export class AppComponent {
   }
 
   shouldShowFilter(): boolean {
-    return this.router.url === '/pokemon-list';
+    return this.router.url.startsWith('/pokemon-list');
   }
 }
