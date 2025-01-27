@@ -1,0 +1,28 @@
+.image-viewer-container {
+  position: relative;
+  text-align: center;
+  padding: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  color: cyan;
+  font-size: 1rem;
+  border: none;
+}
+
+.close-button:hover {
+  color: red;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: 400px; /* Set fixed width for the larger image */
+  max-height: 80vh; /* Ensure it fits within the viewport */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,14 @@
+<div class="pokemon-list-container">
+  <div class="pokemon-grid">
+    <app-pokemon-card
+      *ngFor="let pokemon of filteredPokemonList"
+      [pokemon]="pokemon"
+      [isFavorite]="isFavorite(pokemon.id)"
+      (toggleFavorite)="toggleFavorite($event)"
+    ></app-pokemon-card>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+</div>
