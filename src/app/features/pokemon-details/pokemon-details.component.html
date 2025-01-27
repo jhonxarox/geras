@@ -6,16 +6,17 @@
   <div class="details-content">
     <!-- Left Column: Pokémon Image -->
     <div class="image-section">
-      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
+      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" class="clickable" (click)="openImageViewer()"/>
+      <p class="artwork-caption">Click image to enlarge</p>
     </div>
 
     <!-- Right Column: Pokémon Data -->
     <div class="data-section">
-      <h2>{{ pokemon.name | titlecase }} data </h2>
+      <h2>{{ pokemon.name | titlecase }} data</h2>
       <table>
         <tr>
           <td><strong>ID</strong></td>
-          <td>{{ pokemon.id | number: '3.0' }}</td>
+          <td>{{ pokemon.id | number : "3.0" }}</td>
         </tr>
         <tr>
           <td><strong>Type</strong></td>

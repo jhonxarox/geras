@@ -4,6 +4,8 @@ import { PokemonService } from '../../core/services/pokemon.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageViewerComponent } from '../../shared/image-viewer/image-viewer.component';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -17,7 +19,8 @@ export class PokemonDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +39,15 @@ export class PokemonDetailsComponent implements OnInit {
           }
         );
     }
+  }
+
+  openImageViewer(): void {
+    this.dialog.open(ImageViewerComponent, {
+      data: { imageUrl: this.pokemon.sprites.front_default },
+      panelClass: 'custom-dialog',
+      width: '450px',
+      height: 'auto',
+    });
   }
 
   getStatColor(statName: string): string {
