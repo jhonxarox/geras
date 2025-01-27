@@ -10,4 +10,11 @@ export const routes: Routes = [
         (m) => m.PokemonListComponent
       ),
   },
+  {
+    path: 'pokemon/:id',
+    loadComponent: () =>
+      import('./features/pokemon-details/pokemon-details.component').then(
+        (m) => m.PokemonDetailsComponent
+      ),
+  },
 ];
