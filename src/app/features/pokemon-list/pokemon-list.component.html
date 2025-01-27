@@ -1,7 +1,7 @@
 <div class="pokemon-list-container">
   <div class="pokemon-grid">
     <app-pokemon-card
-      *ngFor="let pokemon of pokemonList"
+      *ngFor="let pokemon of filteredPokemonList"
       [pokemon]="pokemon"
       [isFavorite]="isFavorite(pokemon.id)"
       (toggleFavorite)="toggleFavorite($event)"

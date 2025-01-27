@@ -6,6 +6,18 @@
     <li>
       <a routerLink="/favorites" routerLinkActive="active-link">Favorites</a>
     </li>
+    <li *ngIf="shouldShowFilter()">
+      <select
+        id="type-filter"
+        class="type-filter"
+        (change)="onTypeFilterChange($event)"
+      >
+        <option value="all">All</option>
+        <option *ngFor="let type of pokemonTypes" [value]="type">
+          {{ type | titlecase }}
+        </option>
+      </select>
+    </li>
   </ul>
 </nav>
 
